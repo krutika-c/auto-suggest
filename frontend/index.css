@@ -14,10 +14,11 @@
     text-align: center;
     background-color: rgb(241, 181, 89);
     margin-bottom: 20px; 
+    height:30px;
 
 }
 .navbar a{
-    padding-right: 5%;
+    padding: 30px;
     text-decoration: none;
 }
 
