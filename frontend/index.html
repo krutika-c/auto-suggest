@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="index.css">
-
 </head>
 <body>
 
     <div class="navbar">
         <a href="/">Home</a>
-        <a href="https://github.com">GitHub</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
         <a href="https://leetcode.com" target="_blank">LeetCode</a>
-        <a href="/pages/autosuggest.html"> AutoSuggest</a>
+        <a href="/pages/autosuggest.html">AutoSuggest</a>
     </div>
 
     <div class="card" id="cls">
@@ -22,13 +21,16 @@
         <p id="p2">This is toggle button.</p>
     </div>
 
-    <div class="pic" id="pic">
+    <div class="pic">
         <img id="prof" src="./images/jane.png" alt="no-img-found">
+
         <h2 id="name">Jane Doe</h2>
         <h3 id="gender">Female</h3>
-        <button id="toggleBtn">Toggle</button>
 
+        <button onclick="toggle()">Toggle</button>
+        <button onclick="randomuser()">Random Users</button>
     </div>
+
     <script src="index.js"></script>
 
 </body>

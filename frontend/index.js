@@ -1,20 +1,52 @@
-const toggleBtn=document.getElementById("toggleBtn");
-const prof=document.getElementById("prof");
-const name=document.getElementById("name");
-const gender=document.getElementById("gender");
-
-let isJane=true;
-
-toggleBtn.addEventListener("click",()=>{
-    if (isJane) {
-        prof.src = "./images/john.png";
-        name.textContent = "John Doe";
-        gender.textContent = "Male";
-    } else {
-        prof.src = "./images/jane.png";
-        name.textContent = "Jane Doe";
-        gender.textContent = "Female";
+const users = [
+    {
+        name: "Jane Doe",
+        gender: "Female",
+        image: "./images/jane.png"
+    },
+    {
+        name: "John Doe",
+        gender: "Male",
+        image: "./images/john.png"
     }
+];
 
-    isJane = !isJane;
-});
+let curUserId = 0;
+
+function toggle() {
+
+    if (curUserId == 0)
+        curUserId = 1;
+    else
+        curUserId = 0;
+
+    // image
+    document.getElementById("prof").src = users[curUserId].image;
+
+    // name
+    document.getElementById("name").innerText = users[curUserId].name;
+
+    // gender
+    document.getElementById("gender").innerText = users[curUserId].gender;
+}
+
+function randomuser(){
+    fetch("https://randomuser.me/api/")
+    .then(function(data){
+        return data.json()
+    })
+    .then(function(parsedData){
+        let gender=parsedData.results[0].gender;
+
+        let first=parsedData.results[0].name.first;
+        let last=parsedData.results[0].name.last;
+        let name=first+" "+last;
+        
+        let imageUrl=parsedData.results[0].picture.large;
+
+        document.getElementById("gender").innerText=gender;
+        document.getElementById("name").innerText=name;
+        document.getElementById("prof").src=imageUrl;
+    })
+}
+
