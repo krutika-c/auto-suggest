@@ -1,4 +1,41 @@
-h1{
-    color:red;
-    
+
+.card{
+    text-align: center;
+    border: 3px solid black;
+
+}
+
+#cls:hover{
+    background-color:burlywood;
+}
+
+.navbar{
+    border: 2px dotted black;
+    text-align: center;
+    background-color: rgb(241, 181, 89);
+    margin-bottom: 20px; 
+
+}
+.navbar a{
+    padding-right: 5%;
+    text-decoration: none;
+}
+
+.pic{
+    text-align: center;
+    margin: 50px auto;
+}
+
+.pic img{
+    margin: 0 auto;
+}
+
+#h1{
+    color: aqua;
+}
+#p1{
+    color:blueviolet;
+}
+#p2{
+    color:brown;
 }
