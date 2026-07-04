@@ -4,13 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUTO SUGGEST</title>
+    <link rel="stylesheet" href="autosuggest.css">
 </head>
 <body>
-    <p> <span>&#9881;</span>
-    <span>&#8226; online | &#9201;</span> - ms</p>
-    <h1>BeingInfinity</h1>
-    <p>One million phrases. Four algorithms. Prefix Based Auto Suggest</p>
-    <span>&#128269;</span>
-    <input type="text" placeholder="Start typing to search" id="search">
+
+    <div class="topBar">
+        <span id="settings">&#9881;</span>
+        <span id="status">&#8226; online | &#9201; - ms</span>
+    </div>
+
+    <div class="container">
+
+        <h1>
+            <span id="blackText">Being</span><span id="blueText">Infinity</span>
+        </h1>
+
+        <p id="tagline">
+            One million phrases. Four algorithms. Prefix Based Auto Suggest.
+        </p>
+
+        <div class="searchContainer">
+
+            <span class="searchIcon">&#128269;</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                class="searchInput"
+                placeholder="Start typing to search phrases..."
+            >
+
+            <div id="output"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const input = document.getElementById("searchInput");
+        const output = document.getElementById("output");
+
+        input.addEventListener("input", function () {
+
+            const text = input.value.trim();
+
+            if (text === "") {
+                output.innerHTML = "";
+                output.style.display = "none";
+                return;
+            }
+
+            const api =
+                "https://autosuggest-backend.onrender.com/api/autosuggest?q=" +
+                encodeURIComponent(text) +
+                "&algorithm=brute&limit=10&weighted=false";
+
+            fetch(api)
+                .then(response => response.json())
+                .then(data => {
+
+                    let display = "";
+
+                    data.results.forEach(result => {
+                        display += `<div class="item">${result.text}</div>`;
+                    });
+
+                    output.innerHTML = display;
+                    output.style.display =
+                        data.results.length ? "block" : "none";
+                });
+        });
+
+        output.addEventListener("click", function (e) {
+
+            if (e.target.classList.contains("item")) {
+                input.value = e.target.textContent;
+                output.style.display = "none";
+            }
+
+        });
+
+        document.addEventListener("click", function (e) {
+
+            if (!e.target.closest(".searchContainer")) {
+                output.style.display = "none";
+            }
+
+        });
+    </script>
+
 </body>
 </html>
